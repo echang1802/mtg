@@ -1,2 +1,2 @@
-{"type":"land","number":24,"tapped":False,"colors":["White"]}
-{"type":"spell", "sub_type":"creature","costs":{"1":10,"2":5,"3":2,"4":1,"10":1},"colors":["White"]}
+{"type":"land","number":14,"tapped":False,"colors":["White"]}
+{"type":"spell", "sub_type":"creature","costs":{"1":10,"2":7,"3":5,"4":3,"10":1},"colors":["White"]}
