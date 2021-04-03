@@ -5,7 +5,10 @@ class card:
 
     def __init__(self, type, colors):
         self.type = type
-        self.colors = colors
+        self._colors = colors
+
+    def colors(self):
+        return "-".join(self._colors)
 
 class land(card):
 
@@ -56,9 +59,14 @@ class deck:
 
     def cards_type_in_hand(self, type):
         if self.cards_in_hand() == 0:
-            return 0
-        count = 0
+            return {}
+        counts = 0
+        colors = {}
         for c in self._hand:
             if c.type == type:
-                count += 1
-        return count
+                counts += 1
+                if c.colors() in colors.keys():
+                    colors[c.colors()] += 1
+                else:
+                    colors[c.colors()] = 1
+        return {"cards": counts, "colors": colors}

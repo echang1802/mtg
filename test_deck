@@ -1,2 +1,3 @@
-{"type":"land","number":14,"tapped":False,"colors":["White"]}
+{"type":"land","number":7,"tapped":False,"colors":["White"]}
+{"type":"land","number":7,"tapped":False,"colors":["Black"]}
 {"type":"spell", "sub_type":"creature","costs":{"1":10,"2":7,"3":5,"4":3,"10":1},"colors":["White"]}
