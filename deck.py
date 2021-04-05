@@ -13,6 +13,9 @@ class card:
     def __repr__(self):
         return "{}-{}".format(self.type, "-".join(self._colors))
 
+    def __str__(self):
+        return "{}-{}".format(self.type, "-".join(self._colors))
+
 class land(card):
 
     def __init__(self, colors, enter_tapped = False):
@@ -38,6 +41,9 @@ class spell(card):
     def __repr__(self):
         return "{}-{}-{}".format(self.type, "-".join(self._colors), self.cost)
 
+    def __str__(self):
+        return "{}-{}-{}".format(self.type, "-".join(self._colors), self.cost)
+
 class deck:
 
     def __init__(self):
@@ -54,10 +60,12 @@ class deck:
             for i in range(costs[cost]):
                 self._cards.append(spell(int(cost), colors, type))
 
-    def draw(self):
+    def draw(self, return_type = False):
         ind = choice(range(self.cards()))
         self._hand.append(self._cards[ind])
         self._cards.pop(ind)
+        if return_type:
+            return self._hand[-1].type
 
     def draw_hand(self):
         for i in range(7):

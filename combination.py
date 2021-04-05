@@ -27,5 +27,11 @@ class combo:
                 return False
         return True
 
+    def __str__(self):
+        text = ""
+        for c in self._cards:
+            text += str(c) + "|"
+        return text[:-1]
+
     def cards_in_combo(self):
         return len(self._cards)

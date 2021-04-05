@@ -64,3 +64,22 @@ def estimate_combination_of_cards_with_mulligans(deck, combination, simulations 
         dist.add_data(deck.mulligans_taken() if combo_appear else -1)
         deck.reset()
     dist.show()
+
+def estimate_turns_until_M_lands(deck, N, M, simulations = 1000):
+    dist = distribution()
+    for s in range(simulations):
+        ready = False
+        while not ready:
+            deck.reset()
+            deck.draw_hand()
+            lands = int(str(deck.cards_type_in_hand("land")["cards"]))
+            ready = lands == N
+        ready = False
+        turns = 0
+        while not ready:
+            if deck.draw(return_type = True) == "land":
+                lands += 1
+            ready = lands == M
+            turns += 1
+        dist.add_data(turns)
+    dist.show()

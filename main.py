@@ -29,6 +29,7 @@ if __name__ == "__main__":
         }
     }
     com = mtg.combo(combination)
+    print(com)
     counts = mtg.estimate_combination_of_cards(deck, com)
     print("{}%".format(counts))
 
@@ -40,4 +41,10 @@ if __name__ == "__main__":
         }
     }
     com = mtg.combo(combination)
+    print(com)
     mtg.estimate_combination_of_cards_with_mulligans(deck, com)
+
+    N = 1
+    M = 4
+    print("\nProbability of get M({}) lands in T turns when N({}) lands are drawed in first hand:".format(M,N))
+    mtg.estimate_turns_until_M_lands(deck, N, M)
