@@ -6,8 +6,21 @@ if __name__ == "__main__":
 
     deck = mtg.read_deck(argv[1])
 
+    print("Probability of land in first hand:")
     distribution = mtg.estimate_lands_in_fist_hand(deck)
     mtg.print_distribution(distribution)
 
+    print("\nProbability of land in first hand by color:")
     distribution = mtg.estimate_lands_in_fist_hand_by_color(deck)
     mtg.print_distribution(distribution)
+
+    print("\nProbability of combination in first hand:")
+    combination = {
+        "lands" : {
+            "white" : 1,
+            "black" : 1
+        }
+    }
+    com = mtg.combo(combination)
+    counts = mtg.estimate_combination_of_cards(deck, com)
+    print("{}%".format(counts))

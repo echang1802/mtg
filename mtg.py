@@ -1,5 +1,6 @@
 
 import deck
+from combination import combo
 
 def read_deck(filename):
     with open(filename, "r") as file:
@@ -61,3 +62,12 @@ def estimate_lands_in_fist_hand_by_color(deck, simulations = 1000):
             }
         deck.reset()
     return counts
+
+def estimate_combination_of_cards(deck, combination, simulations = 1000):
+    counts = 0
+    for s in range(simulations):
+        deck.draw_hand()
+        if deck.get_hand() in combination:
+            counts += 1
+        deck.reset()
+    return counts / simulations
