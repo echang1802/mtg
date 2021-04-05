@@ -43,6 +43,7 @@ class deck:
     def __init__(self):
         self._cards = []
         self._hand = []
+        self._mulligans = 0
 
     def add_lands(self, N, enter_tapped, colors):
         for i in range(N):
@@ -66,15 +67,19 @@ class deck:
         for c in self._hand:
             self._cards.append(c)
         self._hand = []
+        self._mulligans = 0
 
     def cards(self):
         return len(self._cards)
 
     def cards_in_hand(self):
-        return len(self._hand)
+        return len(self._hand) - self._mulligans
 
     def get_hand(self):
         return self._hand
+
+    def mulligans_taken(self):
+        return self._mulligans
 
     def cards_type_in_hand(self, type):
         if self.cards_in_hand() == 0:
@@ -89,3 +94,10 @@ class deck:
                 else:
                     colors[c.colors()] = 1
         return {"cards": counts, "colors": colors}
+
+    def mulligan(self):
+        for c in self._hand:
+            self._cards.append(c)
+        self._hand = []
+        self.draw_hand()
+        self._mulligans += 1

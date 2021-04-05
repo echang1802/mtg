@@ -17,8 +17,27 @@ if __name__ == "__main__":
         "lands" : {
             "white" : 1,
             "black" : 1
+        },
+        "creature": {
+            "white" : {
+                "1" : 1,
+                "2" : 1
+            },
+            "black" : {
+                "1" : 1
+            }
         }
     }
     com = mtg.combo(combination)
     counts = mtg.estimate_combination_of_cards(deck, com)
     print("{}%".format(counts))
+
+    print("\nProbability of first appaearence of combination in mulligans:")
+    combination = {
+        "lands" : {
+            "white" : 1,
+            "black" : 1
+        }
+    }
+    com = mtg.combo(combination)
+    mtg.estimate_combination_of_cards_with_mulligans(deck, com)

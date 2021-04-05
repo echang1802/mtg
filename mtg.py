@@ -39,7 +39,7 @@ def estimate_lands_in_fist_hand_by_color(deck, simulations = 1000):
         dist.add_data(c)
         deck.reset()
     dist.show()
-    
+
 def estimate_combination_of_cards(deck, combination, simulations = 1000):
     counts = 0
     for s in range(simulations):
@@ -48,3 +48,19 @@ def estimate_combination_of_cards(deck, combination, simulations = 1000):
             counts += 1
         deck.reset()
     return counts / simulations
+
+def estimate_combination_of_cards_with_mulligans(deck, combination, simulations = 1000):
+    dist = distribution()
+    for s in range(simulations):
+        deck.draw_hand()
+        combo_appear = deck.get_hand() in combination
+        cards_restriction = deck.cards_in_hand() == combination.cards_in_combo()
+        ready =  combo_appear or cards_restriction
+        while not ready:
+            deck.mulligan()
+            combo_appear = deck.get_hand() in combination
+            cards_restriction = deck.cards_in_hand() == combination.cards_in_combo()
+            ready =  combo_appear or cards_restriction
+        dist.add_data(deck.mulligans_taken() if combo_appear else -1)
+        deck.reset()
+    dist.show()

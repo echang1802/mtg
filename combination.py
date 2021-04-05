@@ -12,7 +12,7 @@ class combo:
                     for i in range(combinations[card_type][color]):
                         self._cards.append(land([color]))
                 else:
-                    for cost in combinations[card_type][color]:
+                    for cost in combinations[card_type][color].keys():
                         for i in range(combinations[card_type][color][cost]):
                             self._cards.append(spell(int(cost), [color], card_type))
 
@@ -26,3 +26,6 @@ class combo:
             if not is_in:
                 return False
         return True
+
+    def cards_in_combo(self):
+        return len(self._cards)
