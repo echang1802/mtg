@@ -1,6 +1,7 @@
 
 import deck
 from combination import combo
+from probability import distribution
 
 def read_deck(filename):
     with open(filename, "r") as file:
@@ -20,49 +21,25 @@ def read_deck(filename):
 
     return new_deck
 
-def print_distribution(dist):
-    for k in dist.keys():
-        print("{}:".format(k))
-        if type(dist[k]) == dict:
-            for k2 in dist[k].keys():
-                print("\t{}:{}".format(k2,dist[k][k2]))
-        else:
-            print("\t{}".format(dist[k]))
-
 def estimate_lands_in_fist_hand(deck, simulations = 1000):
-    counts = {}
+    dist = distribution()
     for s in range(simulations):
         deck.draw_hand()
         lands = str(deck.cards_type_in_hand("land")["cards"])
-        if lands in counts.keys():
-            counts[lands] += 1
-        else:
-            counts[lands] = 1
+        dist.add_data(lands)
         deck.reset()
-    return counts
+    dist.show()
 
 def estimate_lands_in_fist_hand_by_color(deck, simulations = 1000):
-    counts = {}
+    dist = distribution()
     for s in range(simulations):
         deck.draw_hand()
         lands = deck.cards_type_in_hand("land")
-        if str(lands["cards"]) in counts.keys():
-            counts[str(lands["cards"])]["count"] += 1
-            c =  "|".join(["{}:{}".format(c,lands["colors"][c]) for c in lands["colors"].keys()])
-            if c in counts[str(lands["cards"])]["colors"].keys():
-                counts[str(lands["cards"])]["colors"][c] += 1
-            else:
-                counts[str(lands["cards"])]["colors"][c] = 1
-        else:
-            counts[str(lands["cards"])] = {
-                "count" : 1,
-                "colors" : {
-                    "|".join(["{}:{}".format(c,lands["colors"][c]) for c in lands["colors"].keys()]) : 1
-                }
-            }
+        c =  "|".join(["{}:{}".format(c,lands["colors"][c]) for c in lands["colors"].keys()])
+        dist.add_data(c)
         deck.reset()
-    return counts
-
+    dist.show()
+    
 def estimate_combination_of_cards(deck, combination, simulations = 1000):
     counts = 0
     for s in range(simulations):
