@@ -1,5 +1,6 @@
 
-from random import choice
+from random import choice, seed
+seed(1)
 
 class card:
 
