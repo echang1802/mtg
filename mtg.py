@@ -21,7 +21,7 @@ def read_deck(filename):
 
     return new_deck
 
-def estimate_lands_in_fist_hand(deck, simulations = 1000):
+def estimate_lands_in_fist_hand(deck, simulations = 10000):
     dist = distribution()
     for s in range(simulations):
         deck.draw_hand()
@@ -30,7 +30,7 @@ def estimate_lands_in_fist_hand(deck, simulations = 1000):
         deck.reset()
     dist.show()
 
-def estimate_lands_in_fist_hand_by_color(deck, simulations = 1000):
+def estimate_lands_in_fist_hand_by_color(deck, simulations = 10000):
     dist = distribution()
     for s in range(simulations):
         deck.draw_hand()
@@ -40,7 +40,7 @@ def estimate_lands_in_fist_hand_by_color(deck, simulations = 1000):
         deck.reset()
     dist.show()
 
-def estimate_combination_of_cards(deck, combination, simulations = 1000):
+def estimate_combination_of_cards(deck, combination, simulations = 10000):
     counts = 0
     for s in range(simulations):
         deck.draw_hand()
@@ -49,7 +49,7 @@ def estimate_combination_of_cards(deck, combination, simulations = 1000):
         deck.reset()
     return counts / simulations
 
-def estimate_combination_of_cards_with_mulligans(deck, combination, simulations = 1000):
+def estimate_combination_of_cards_with_mulligans(deck, combination, simulations = 10000):
     dist = distribution()
     for s in range(simulations):
         deck.draw_hand()
@@ -65,7 +65,7 @@ def estimate_combination_of_cards_with_mulligans(deck, combination, simulations 
         deck.reset()
     dist.show()
 
-def estimate_turns_until_M_lands(deck, N, M, simulations = 1000):
+def estimate_turns_until_M_lands(deck, N, M, simulations = 10000):
     dist = distribution()
     for s in range(simulations):
         ready = False

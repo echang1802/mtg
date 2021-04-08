@@ -20,10 +20,6 @@ if __name__ == "__main__":
         },
         "creature": {
             "white" : {
-                "1" : 1,
-                "2" : 1
-            },
-            "black" : {
                 "1" : 1
             }
         }
@@ -38,6 +34,11 @@ if __name__ == "__main__":
         "lands" : {
             "white" : 1,
             "black" : 1
+        },
+        "creature": {
+            "white" : {
+                "1" : 1
+            }
         }
     }
     com = mtg.combo(combination)
