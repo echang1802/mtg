@@ -1,5 +1,5 @@
-{"type":"land","number":12,"tapped":False,"colors":["white"]}
-{"type":"land","number":12,"tapped":False,"colors":["black"]}
+{"type":"land","number":16,"tapped":False,"colors":["white"]}
+{"type":"land","number":8,"tapped":False,"colors":["black"]}
 {"type":"spell", "sub_type":"creature","costs":{"1":8,"2":8,"3":4,"4":3,"10":2},"colors":["white"]}
 {"type":"spell", "sub_type":"creature","costs":{"1":4,"2":4,"3":2},"colors":["black"]}
 {"type":"spell", "sub_type":"instant","costs":{"1":4,"2":4},"colors":["white"]}
